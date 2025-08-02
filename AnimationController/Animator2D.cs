@@ -120,7 +120,8 @@ namespace MantenseiLib
         [SerializeField] private bool _playOnAwake = true;
 
         // コンポーネント参照
-        private SpriteRenderer _spriteRenderer;
+        [GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)] 
+        SpriteRenderer _spriteRenderer;
 
         // アニメーション管理
         private readonly Dictionary<string, AnimationData2D> _animationDict = new Dictionary<string, AnimationData2D>();
@@ -158,8 +159,6 @@ namespace MantenseiLib
 
         private void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
             InitializeAnimations();
 
             if (_playOnAwake)

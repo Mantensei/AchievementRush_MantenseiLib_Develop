@@ -11,6 +11,7 @@ namespace MantenseiLib.UnityAction.Action2D
 
         private void Update()
         {
+
             if(Input.GetKey(KeyCode.Space))
             {
                 if(player.GroundChecker.IsGround())

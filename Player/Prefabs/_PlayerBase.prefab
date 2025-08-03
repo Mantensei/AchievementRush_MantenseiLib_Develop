@@ -1269,6 +1269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMarker: {fileID: 0}
   sr: {fileID: 0}
+  lockOptions: -1
 --- !u!114 &4466103133204449121
 MonoBehaviour:
   m_ObjectHideFlags: 0

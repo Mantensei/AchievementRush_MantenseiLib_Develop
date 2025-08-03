@@ -9,8 +9,13 @@ public class dmg_Test_01 : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            HitDetector.Factory(transform.position + Vector3.right * 1)
-                .OnHit((e) => Debug.Log($"{e.HitObject}"))
+            var dmg = DamageInfo.one;
+            Debug.Log(dmg);
+
+            DamageObject.Factory(dmg, transform.position + Vector3.right * 1)
+                //.SetTiming(HitTiming.Enter)
+                //.SetHitInterval(1f)
+                //.OnHit((e) => Debug.Log($"{e.HitObject}"))
                 .SetTargetTags("Player")
                 //.SetDetectionType(DetectionType.Collision)
                 ;

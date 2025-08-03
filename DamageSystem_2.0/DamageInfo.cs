@@ -82,8 +82,8 @@ namespace MantenseiLib.Develop
         public bool IsDamage => Damage > 0;
 
         // ===== 静的ファクトリ =====
-        public static DamageInfo Zero => new DamageInfo(0);
-        public static DamageInfo One => new DamageInfo(1);
+        public static DamageInfo zero => new DamageInfo(0);
+        public static DamageInfo one => new DamageInfo(1);
 
         // ===== 演算子オーバーロード =====
         public static DamageInfo operator *(DamageInfo info, float multiplier)

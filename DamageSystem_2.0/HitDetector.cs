@@ -34,20 +34,14 @@ namespace MantenseiLib.Develop
         public DetectionType DetectionType { get; set; }
     }
 
-    public interface IHitReceiver
-    {
-        void OnHit(HitInfo hitInfo);
-    }
-
     public partial class HitDetector : MonoBehaviour, ITransformable<HitDetector>
     {
-        [SerializeField] private DetectionType detectionType = DetectionType.Trigger;
-        [SerializeField] private HitTiming timing = HitTiming.Enter;
-        [SerializeField] private string[] targetTags = null;
-        [SerializeField] private LayerMask targetLayers = -1;
-        [SerializeField] private ColliderShape colliderShape = ColliderShape.Box;
+        [field:SerializeField] public DetectionType detectionType { get; private set; } = DetectionType.Trigger;
+        [field:SerializeField] public HitTiming timing { get; private set; } = HitTiming.Enter;
+        [field:SerializeField] public string[] targetTags { get; private set; } = null;
+        [field: SerializeField] public LayerMask targetLayers { get; private set; } = -1;
+        [field: SerializeField] public ColliderShape colliderShape { get; private set; } = ColliderShape.Box;
 
-        private IHitReceiver receiver;
         private Collider2D ownCollider;
 
         public event Action<HitInfo> onHit;
@@ -55,6 +49,13 @@ namespace MantenseiLib.Develop
         //同一ゲームオブジェクトに重複して判定しないようにする
         private int lastFrameNumber = -1;
         private HashSet<GameObject> hitObjectsThisFrame = new HashSet<GameObject>();
+
+        // 追加
+        [field: SerializeField] public float hitInterval { get; private set; } = 0f; // Stay時のヒット間隔
+
+        // 追加
+        private Dictionary<GameObject, float> lastHitTimes = new Dictionary<GameObject, float>();
+
 
         private void Start()
         {
@@ -125,8 +126,10 @@ namespace MantenseiLib.Develop
             return (layerMask.value & (1 << layer)) != 0;
         }
 
+
         private void NotifyHit(HitInfo hitInfo)
         {
+            // フレーム重複除去
             int currentFrame = Time.frameCount;
             if (currentFrame != lastFrameNumber)
             {
@@ -136,9 +139,23 @@ namespace MantenseiLib.Develop
 
             if (hitObjectsThisFrame.Contains(hitInfo.HitObject))
                 return;
-            hitObjectsThisFrame.Add(hitInfo.HitObject);
 
-            receiver?.OnHit(hitInfo);
+            // Stay時のヒット間隔制御
+            if (timing == HitTiming.Stay)
+            {
+                if (hitInterval > 0 && lastHitTimes.TryGetValue(hitInfo.HitObject, out float lastHitTime))
+                {
+                    if (Time.time - lastHitTime < hitInterval)
+                        return;
+                }
+                lastHitTimes[hitInfo.HitObject] = Time.time;
+            }
+            else
+            {
+                lastHitTimes[hitInfo.HitObject] = Time.time;
+            }
+
+            hitObjectsThisFrame.Add(hitInfo.HitObject);
             onHit?.Invoke(hitInfo);
         }
 
@@ -297,12 +314,6 @@ namespace MantenseiLib.Develop
             return this;
         }
 
-        public HitDetector SetReceiver(IHitReceiver receiver)
-        {
-            this.receiver = receiver;
-            return this;
-        }
-
         public HitDetector SetCollider(ColliderShape shape, Vector2 size)
         {
             CreateCollider(shape, size);
@@ -317,6 +328,12 @@ namespace MantenseiLib.Develop
         public HitDetector SetTiming(HitTiming timing)
         {
             this.timing = timing;
+            return this;
+        }
+
+        public HitDetector SetHitInterval(float interval)
+        {
+            hitInterval = interval;
             return this;
         }
 

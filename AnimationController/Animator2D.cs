@@ -178,12 +178,14 @@ namespace MantenseiLib
 
         private void OnGUI()
         {
-            //if (_showDebugInfo && _currentAnimation != null)
-            if (_currentAnimation != null)
+            var info = GetDebugInfo();
+            var style = new GUIStyle()
             {
-                var info = GetDebugInfo();
-                GUI.Label(new Rect(10, 10, 400, 100), info);
-            }
+                fontSize = 32,
+                normal = new GUIStyleState { textColor = Color.white },
+            };
+
+            GUI.Label(new Rect(10, 10, 400, 100), info, style);
         }
 
         #endregion

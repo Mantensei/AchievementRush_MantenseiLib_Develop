@@ -141,7 +141,7 @@ namespace MantenseiLib
         }
     }
 
-    public interface IPlayerHub : IHelper
+    public interface IPlayerHub : IRb2d
     {
         //PlayerStateManager PlayerStateManager { get; }
         MoverBase Mover { get; }

@@ -6,15 +6,18 @@ using DG.Tweening;
 
 namespace MantenseiLib
 {
-    public class MoverBase : HubChild<IHelper>
+    public class MoverBase : MonoBehaviour
     {
-        //[GetComponent]
-        //StateMarker stateMarker;
-
         public float speed = 2f;
-        private bool isMoving = false; 
-        private Rigidbody2D rb2d => HUB.rb2d;
-        new private Transform transform => HUB.transform;
+        private bool isMoving = false;
+
+        [GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)]
+        ActionStateLock _stateLock;
+
+        [GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)]
+        IRb2d _irb2d;
+        public Rigidbody2D rb2d => _irb2d.rb2d;
+        new Transform transform => _irb2d.transform;
         public Vector2 Velocity => rb2d.velocity;
 
         public void Move()
@@ -25,15 +28,16 @@ namespace MantenseiLib
 
         public void Move(float dir)
         {
+            if(_stateLock?.AllowMove == false)
+                return;
+
             var velo = rb2d.velocity;
             rb2d.velocity = new Vector2(speed * dir, velo.y);
             isMoving = true; 
         }
 
-        protected override void Update()
+        protected void Update()
         {
-            base.Update();
-
             if (!isMoving)
             {
                 rb2d.velocity = new Vector2(0, rb2d.velocity.y);

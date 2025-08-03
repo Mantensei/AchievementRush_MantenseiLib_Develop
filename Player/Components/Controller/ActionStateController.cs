@@ -7,11 +7,12 @@ namespace MantenseiLib
     public class ActionStateController : HubChild<IPlayerHub>
     {
         [GetComponent(HierarchyRelation.Parent)] private ActionStateLock stateLock;
-        [GetComponent] private Animation2DRegisterer animRegisterer; // オプショナル
+        [GetComponent] private Animation2DRegisterer animRegisterer;
+        [SerializeField] StateLockOption lockOptions;
 
         public bool TryExecuteAction(System.Action actionCallback)
         {
-            if (!stateLock?.TryLock(this) == true) return false;
+            if (!stateLock?.TryLock(this, lockOptions) == true) return false;
 
             animRegisterer?.Play();
             actionCallback?.Invoke();

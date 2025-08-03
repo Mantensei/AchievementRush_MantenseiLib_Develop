@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace MantenseiLib.Develop
+namespace MantenseiLib
 {
     public partial class DamageObject : MonoBehaviour, ITransformable<DamageObject>
     {
@@ -12,6 +12,7 @@ namespace MantenseiLib.Develop
 
         private HitDetector _hitDetector;
         private Coroutine lifeTimeCoroutine;
+        int HP = -1;
 
         public event Action<HitInfo, DamageResult> onDamageApplied;
         public event Action<DamageObject> onDestroyed;
@@ -50,6 +51,15 @@ namespace MantenseiLib.Develop
             {
                 damageable.TakeDamage(damageInfo);
                 onDamageApplied?.Invoke(hitInfo, damageInfo.Result);
+
+                if(HP > 0)
+                {
+                    HP--;
+                    if (HP <= 0)
+                    {
+                          DestroyObject();
+                    }
+                }
             }
         }
 
@@ -91,18 +101,6 @@ namespace MantenseiLib.Develop
         }
 
         #endregion
-
-
-        #region Private Methods
-
-        private void CreateHitDetector(ColliderShape shape, Vector2 size)
-        {
-            _hitDetector = gameObject.AddComponent<HitDetector>();
-            _hitDetector.SetCollider(shape, size)
-                      .OnHit(this.OnHit);
-        }
-
-        #endregion
     }
 
     public partial class DamageObject
@@ -136,15 +134,24 @@ namespace MantenseiLib.Develop
         /// <summary>
         /// 指定した形状とサイズでDamageObjectを生成
         /// </summary>
-        public static DamageObject Factory(DamageInfo damageInfo, Vector2 position, Vector2 size, ColliderShape shape)
+        public static DamageObject Factory(DamageInfo damageInfo, Vector2 position, Vector2 size, ColliderShape shape, Transform parent = null)
         {
             var gameObject = new GameObject("DamageObject");
             gameObject.transform.position = position;
 
             var damageObject = gameObject.AddComponent<DamageObject>();
-            damageObject.CreateHitDetector(shape, size);
+            damageObject._hitDetector = gameObject.AddComponent<HitDetector>();
+            damageObject._hitDetector
+                .SetCollider(shape, size)
+                .OnHit(damageObject.OnHit);
 
             damageObject.damageInfo = damageInfo;
+
+            if(parent != null)
+            {
+                gameObject.transform.SetParent(parent);
+                damageObject.SetIgnoreColliders(parent.gameObject);
+            }
 
             return damageObject;
         }
@@ -199,6 +206,12 @@ namespace MantenseiLib.Develop
         public DamageObject SetHitInterval(float interval)
         {
             _hitDetector?.SetHitInterval(interval);
+            return this;
+        }
+
+        public DamageObject SetIgnoreColliders(GameObject target)
+        {
+            _hitDetector?.SetIgnoreColliders(target);
             return this;
         }
 

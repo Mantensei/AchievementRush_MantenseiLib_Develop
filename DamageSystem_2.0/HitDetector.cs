@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MantenseiLib.Develop
+namespace MantenseiLib
 {
     public enum DetectionType
     {
@@ -340,6 +340,19 @@ namespace MantenseiLib.Develop
         public HitDetector OnHit(Action<HitInfo> action)
         {
             onHit += action;
+            return this;
+        }
+
+        public HitDetector SetIgnoreColliders(GameObject target)
+        {
+            var colliders = target.GetComponentsInChildren<Collider2D>();
+            foreach (var collider in colliders)
+            {
+                if (ownCollider != null && collider != null)
+                {
+                    Physics2D.IgnoreCollision(ownCollider, collider);
+                }
+            }
             return this;
         }
 

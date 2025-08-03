@@ -4,7 +4,7 @@ using UnityEngine;
 using MantenseiLib;
 using System.Linq;
 
-namespace MantenseiLib
+namespace MantenseiLib.Obsolete
 {
     public partial class SerializableDamageInfo
     {

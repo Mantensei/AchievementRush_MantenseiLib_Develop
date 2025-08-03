@@ -1,4 +1,4 @@
-using MantenseiLib.Develop;
+using MantenseiLib;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

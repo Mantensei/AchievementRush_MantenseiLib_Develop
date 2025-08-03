@@ -5,7 +5,7 @@ using MantenseiLib;
 using System.Linq;
 using System;
 
-namespace MantenseiLib
+namespace MantenseiLib.Obsolete
 {
     public partial class DamageObject : BaseMonoBehaviour, IGetCollider, ITransformable<DamageObject>
     {

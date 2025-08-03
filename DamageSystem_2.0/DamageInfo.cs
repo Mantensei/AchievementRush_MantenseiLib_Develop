@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MantenseiLib.Develop
+namespace MantenseiLib
 {
     /// <summary>
     /// ダメージを受けることができるオブジェクトのインターフェース
@@ -47,12 +47,13 @@ namespace MantenseiLib.Develop
     /// <summary>
     /// ダメージ情報クラス（使い捨て設計）
     /// </summary>
+    [System.Serializable]
     public partial class DamageInfo
     {
         // ===== 入力情報 =====
-        public float Damage { get; set; }
+        [field:SerializeField] public float Damage { get; set; }
         public MonoBehaviour Attacker { get; set; }
-        public HashSet<string> Tags { get; private set; } = new HashSet<string>();
+        [field:SerializeField] public HashSet<string> Tags { get; private set; } = new HashSet<string>();
 
         // ===== 結果情報 =====
         public DamageResult Result { get; set; } = null;

@@ -15,10 +15,10 @@ namespace MantenseiLib
         private bool isMoving = false; 
         private Rigidbody2D rb2d => HUB.rb2d;
         new private Transform transform => HUB.transform;
+        public Vector2 Velocity => rb2d.velocity;
 
         public void Move()
         {
-            //var dir = Mathf.Sign(transform.localScale.x);
             var dir = transform.Right2D();
             Move(dir.x);
         }

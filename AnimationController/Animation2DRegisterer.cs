@@ -11,18 +11,20 @@ namespace MantenseiLib
     public class Animation2DRegisterer : MonoBehaviour
     {
         [GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)]
-        public Animator2D Animator { get; private set; }
+        public IAnimator2D IAnimator { get; private set; }
+        public Animator2D Animator => IAnimator.Animator;
 
         [field:SerializeField] public AnimationData2D AnimationData2D { get; set; }
 
-        void Start()
-        {
-            Animator.RegisterAnimation(AnimationData2D);
-        }
 
         public bool Play()
         {
             return Animator.Play(AnimationData2D);
+        }
+
+        public void Pause()
+        {
+            Animator.TryPause(AnimationData2D);
         }
     }
 }

@@ -23,8 +23,11 @@ namespace MantenseiLib
 		public event Action OnKillAction;
 		public event Action OnCompleteAction;
 
-		//[GetComponent]
-		//StateMarker stateMarker;
+		[GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)]
+		ActionStateController _stateController;
+
+        //[GetComponent]
+        //StateMarker stateMarker;
 
         protected override void Start()
         {
@@ -44,19 +47,23 @@ namespace MantenseiLib
 			if (jumpTween != null) return;
 			if (CeillingChecker?.IsGround() == true) return;
 
+
 			float destination = transform.position.y + height * power;
 			float duration = height * power * heightPerDuration;
 
-			Jump(destination, duration);
+			//_stateController‚ª‘¶Ý‚µ‚È‚¯‚ê‚ÎŽÀs
+			if (_stateController == null)
+			{
+				JumpStart(destination, duration);
+			}
+			else
+			{
+				_stateController?.TryExecuteAction(() => JumpStart(destination, duration));
+			}
 		}
 
-		void Jump(float destination, float duration)
+		void JumpStart(float destination, float duration)
 		{
-			//if (stateMarker?.TrySetState() == false)
-			//	return;
-			//else
-			//	stateMarker?.TryResetState();
-
             _gravityScale = rb2d.gravityScale;
             rb2d.gravityScale = 0;
 
@@ -88,6 +95,8 @@ namespace MantenseiLib
 			jumpTween = null;
 
 			OnKillAction?.Invoke();
-		}
+
+			_stateController?.EndAction();
+        }
     }
 }

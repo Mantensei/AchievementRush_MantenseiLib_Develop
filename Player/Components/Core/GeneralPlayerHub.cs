@@ -5,28 +5,34 @@ using UnityEngine;
 
 namespace MantenseiLib
 {
-    public sealed class GeneralPlayerHub : BaseMonoBehaviour, IPlayerHub
+    public sealed class GeneralPlayerHub : BaseMonoBehaviour, IPlayerHub, IAnimator2D
     {
         //[GetComponent(HierarchyRelation.Children)]
         //public PlayerStateManager PlayerStateManager { get; private set; }
 
         [GetComponent(HierarchyRelation.Children)]
-        public MoverBase Mover {get; private set;}
+        public MoverBase Mover { get; private set; }
 
         [GetComponent(HierarchyRelation.Children)]
-        public Jumper Jumper {get; private set;}
+        public Jumper Jumper { get; private set; }
 
-        [field:SerializeField]
-        public GroundChecker GroundChecker {get; private set;}
+        [field: SerializeField]
+        public GroundChecker GroundChecker { get; private set; }
 
-        [field:SerializeField]
-        public GroundChecker CeillingChecker {get; private set;}
+        [field: SerializeField]
+        public GroundChecker CeillingChecker { get; private set; }
 
         [GetComponents(HierarchyRelation.Self | HierarchyRelation.Children)]
-        public Collider2D[] Colliders {get; private set;}
+        public Collider2D[] Colliders { get; private set; }
 
         [GetComponent(HierarchyRelation.Self | HierarchyRelation.Children)]
-        public Rigidbody2D rb2d {get; private set;}
+        public Rigidbody2D rb2d { get; private set; }
+
+        [GetComponent(HierarchyRelation.All)]
+        public Animator2D Animator { get; private set; }
+
+        [GetComponent(HierarchyRelation.All)]
+        public ActionStateLock StateLock { get; private set; }
     }
 
     public abstract class ProjectSpecificPlayerHub : BaseMonoBehaviour, IPlayerHub

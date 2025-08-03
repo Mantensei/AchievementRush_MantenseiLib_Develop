@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3961701447680319797}
+  - component: {fileID: 4046796301730550504}
   m_Layer: 6
   m_Name: Action
   m_TagString: Untagged
@@ -33,6 +34,20 @@ Transform:
   - {fileID: 4425927679289356671}
   m_Father: {fileID: 8845460888803945676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4046796301730550504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28351006064691619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aadc21ed5413f324697d04c0b5be31bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMarker: {fileID: 0}
+  sr: {fileID: 0}
 --- !u!1 &733023645281059317
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +144,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733023645281059317}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -142,6 +157,79 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1282414211307757005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3515695437722747211}
+  - component: {fileID: 7393080618180992213}
+  - component: {fileID: 6316015036927249554}
+  m_Layer: 6
+  m_Name: Mover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3515695437722747211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282414211307757005}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3395886750338667587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7393080618180992213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282414211307757005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1261a127e63b3cf458331c0cd8ba30aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AnimationData2D>k__BackingField:
+    <name>k__BackingField: Chieri_Walk
+    <frames>k__BackingField:
+    - <sprite>k__BackingField: {fileID: -3855551799525885682, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666667
+    - <sprite>k__BackingField: {fileID: -8938511835507791915, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666667
+    - <sprite>k__BackingField: {fileID: -4572018318505446620, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666666
+    - <sprite>k__BackingField: {fileID: -3285042265207582774, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666669
+    - <sprite>k__BackingField: {fileID: -3285042265207582774, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.016666668
+    <priority>k__BackingField: 1
+    <speed>k__BackingField: 1
+    <loop>k__BackingField: 1
+--- !u!114 &6316015036927249554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282414211307757005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f78275f9d9ee7c47880ba573a856629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1711744924410920305
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,75 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4dfb072fc90d4c4790675cac510ef30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animations:
-  - <name>k__BackingField: Chieri_Jump
-    <frames>k__BackingField:
-    - <sprite>k__BackingField: {fileID: -3855551799525885682, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: -8938511835507791915, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: -4572018318505446620, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666666
-    - <sprite>k__BackingField: {fileID: -3285042265207582774, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666669
-    - <sprite>k__BackingField: {fileID: -3285042265207582774, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.016666668
-    <priority>k__BackingField: 0
-    <speed>k__BackingField: 1
-    <loop>k__BackingField: 1
-  - <name>k__BackingField: Chieri_Walk
-    <frames>k__BackingField:
-    - <sprite>k__BackingField: {fileID: -3165029931988847104, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: 1009858018970570982, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: 9012305794945130612, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666666
-    - <sprite>k__BackingField: {fileID: -8581096230385209340, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666669
-    - <sprite>k__BackingField: {fileID: -8581096230385209340, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.016666668
-    <priority>k__BackingField: 0
-    <speed>k__BackingField: 1
-    <loop>k__BackingField: 1
-  - <name>k__BackingField: Chieri_VRoll
-    <frames>k__BackingField:
-    - <sprite>k__BackingField: {fileID: -5448997491135522169, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: -6147095896178297781, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: 2251740933084877050, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666666
-    - <sprite>k__BackingField: {fileID: 5545309538743471609, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666669
-    - <sprite>k__BackingField: {fileID: 0}
-      <duration>k__BackingField: 0.16666669
-    - <sprite>k__BackingField: {fileID: 0}
-      <duration>k__BackingField: 0.16666663
-    - <sprite>k__BackingField: {fileID: 0}
-      <duration>k__BackingField: 0.16666675
-    - <sprite>k__BackingField: {fileID: 0}
-      <duration>k__BackingField: 0.16666663
-    - <sprite>k__BackingField: {fileID: 0}
-      <duration>k__BackingField: 0.016666668
-    <priority>k__BackingField: 0
-    <speed>k__BackingField: 1
-    <loop>k__BackingField: 1
-  - <name>k__BackingField: Chieri_HRoll
-    <frames>k__BackingField:
-    - <sprite>k__BackingField: {fileID: 8850313450252756468, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: -5249828232843828088, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666667
-    - <sprite>k__BackingField: {fileID: 4520848747838479045, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666666
-    - <sprite>k__BackingField: {fileID: -3961478682720240047, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.16666669
-    - <sprite>k__BackingField: {fileID: -3961478682720240047, guid: c45c9604935503d448e5100438437fda, type: 3}
-      <duration>k__BackingField: 0.016666668
-    <priority>k__BackingField: 0
-    <speed>k__BackingField: 1
-    <loop>k__BackingField: 1
+  _animations: []
   _playOnAwake: 1
 --- !u!1 &2429088812733009949
 GameObject:
@@ -650,6 +670,79 @@ MonoBehaviour:
   sr: {fileID: 0}
   <GroundChecker>k__BackingField: {fileID: 954964982675506585}
   <CeillingChecker>k__BackingField: {fileID: 272783641343390916}
+--- !u!1 &5851446594955566846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2421249266981529263}
+  - component: {fileID: 6146098324267877039}
+  - component: {fileID: 7376607059815821321}
+  m_Layer: 6
+  m_Name: Fall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2421249266981529263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851446594955566846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3395886750338667587}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6146098324267877039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851446594955566846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01934aba6f910e04298c01d9d6b8f4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7376607059815821321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851446594955566846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1261a127e63b3cf458331c0cd8ba30aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AnimationData2D>k__BackingField:
+    <name>k__BackingField: Chieri_Fall
+    <frames>k__BackingField:
+    - <sprite>k__BackingField: {fileID: -2112290932061547932, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666667
+    - <sprite>k__BackingField: {fileID: -3776909489307669036, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666667
+    - <sprite>k__BackingField: {fileID: -284854779736953118, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666666
+    - <sprite>k__BackingField: {fileID: -134427391526485759, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666669
+    - <sprite>k__BackingField: {fileID: -134427391526485759, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.016666668
+    <priority>k__BackingField: 5
+    <speed>k__BackingField: 1
+    <loop>k__BackingField: 1
 --- !u!1 &5878324093396122645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4425927679289356671}
   - component: {fileID: 5308418453099964861}
+  - component: {fileID: 2826826491960194331}
+  - component: {fileID: 4466103133204449121}
   m_Layer: 6
   m_Name: Jumper
   m_TagString: Untagged
@@ -1162,6 +1257,56 @@ MonoBehaviour:
   sr: {fileID: 0}
   height: 1.25
   heightPerDuration: 0.2
+--- !u!114 &2826826491960194331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799674504720486059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71803c25c34ef94fa2901b8a0e3760f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMarker: {fileID: 0}
+  sr: {fileID: 0}
+--- !u!114 &4466103133204449121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799674504720486059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1261a127e63b3cf458331c0cd8ba30aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AnimationData2D>k__BackingField:
+    <name>k__BackingField: Chieri_VRoll
+    <frames>k__BackingField:
+    - <sprite>k__BackingField: {fileID: -5448997491135522169, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666667
+    - <sprite>k__BackingField: {fileID: -6147095896178297781, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666667
+    - <sprite>k__BackingField: {fileID: 2251740933084877050, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666666
+    - <sprite>k__BackingField: {fileID: 5545309538743471609, guid: c45c9604935503d448e5100438437fda, type: 3}
+      <duration>k__BackingField: 0.16666669
+    - <sprite>k__BackingField: {fileID: 0}
+      <duration>k__BackingField: 0.16666669
+    - <sprite>k__BackingField: {fileID: 0}
+      <duration>k__BackingField: 0.16666663
+    - <sprite>k__BackingField: {fileID: 0}
+      <duration>k__BackingField: 0.16666675
+    - <sprite>k__BackingField: {fileID: 0}
+      <duration>k__BackingField: 0.16666663
+    - <sprite>k__BackingField: {fileID: 0}
+      <duration>k__BackingField: 0.016666668
+    <priority>k__BackingField: 5
+    <speed>k__BackingField: 2
+    <loop>k__BackingField: 1
 --- !u!1 &8055328402859486338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3395886750338667587
 Transform:
   m_ObjectHideFlags: 0
@@ -1191,7 +1336,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2421249266981529263}
+  - {fileID: 3515695437722747211}
   m_Father: {fileID: 2676017854559746362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7361124699956375123
@@ -1201,7 +1348,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8055328402859486338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a84bc4a66d20f5340b4ed7056ecfb474, type: 3}
   m_Name: 

@@ -94,6 +94,11 @@ namespace MantenseiLib
         }
     }
 
+    public interface IAnimator2D
+    {
+        Animator2D Animator { get; }
+    }
+
     /// <summary>
     /// フレームイベント情報
     /// </summary>
@@ -121,7 +126,7 @@ namespace MantenseiLib
 
         // コンポーネント参照
         [GetComponent(HierarchyRelation.Self | HierarchyRelation.Parent)] 
-        SpriteRenderer _spriteRenderer;
+        public SpriteRenderer sr { get; private set; }
 
         // アニメーション管理
         private readonly Dictionary<string, AnimationData2D> _animationDict = new Dictionary<string, AnimationData2D>();
@@ -274,6 +279,19 @@ namespace MantenseiLib
             return Play(animationName, false);
         }
 
+        public bool TryPause(AnimationData2D animationData2D) => TryPause(animationData2D?.name);
+
+        public bool TryPause(string animationName)
+        {
+            if(CurrentAnimationName == animationName)
+            {
+                Stop();
+                return true;
+            }
+
+            return false;
+        }
+
         public void Stop()
         {
             if (_playCoroutine != null)
@@ -286,6 +304,8 @@ namespace MantenseiLib
             _currentTime = 0f;
             _currentFrameIndex = 0;
             _previousFrameIndex = -1;
+
+            _currentAnimation = null;
         }
 
         public void Pause() => _isPaused = true;
@@ -478,12 +498,12 @@ namespace MantenseiLib
 
         private void UpdateSprite()
         {
-            if (_currentAnimation?.frames == null || _spriteRenderer == null) return;
+            if (_currentAnimation?.frames == null || sr == null) return;
 
             var frame = _currentAnimation.frames[_currentFrameIndex];
             if (frame == null) return;
 
-            _spriteRenderer.sprite = frame.sprite;
+            sr.sprite = frame.sprite;
         }
 
         private void CheckFrameEvents()
